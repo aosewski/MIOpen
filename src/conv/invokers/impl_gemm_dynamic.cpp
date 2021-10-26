@@ -543,6 +543,7 @@ InvokerFactory MakeImplGemmDynamicForwardXdlopsNHWCInvokerFactory(
                     SetTensor(handle, workspaceDesc, workSpace, &zero);
                 else
                     SetTensor(handle, tensors.outDesc, tensors.out, &zero);
+
                 if(handle.IsProfilingEnabled())
                     elapsed += handle.GetKernelTime();
             }
@@ -567,7 +568,6 @@ InvokerFactory MakeImplGemmDynamicForwardXdlopsNHWCInvokerFactory(
 
             if(handle.IsProfilingEnabled())
             {
-                // elapsed += handle.GetKernelTime();
                 handle.ResetKernelTime();
                 handle.AccumKernelTime(elapsed);
             }
@@ -736,7 +736,6 @@ InvokerFactory MakeImplGemmDynamicBackwardDataXdlopsNHWCInvokerFactory(
             }
 
             ker(opArgs);
-
             if(handle.IsProfilingEnabled())
                 elapsed += handle.GetKernelTime();
 
@@ -756,7 +755,6 @@ InvokerFactory MakeImplGemmDynamicBackwardDataXdlopsNHWCInvokerFactory(
 
             if(handle.IsProfilingEnabled())
             {
-                // elapsed += handle.GetKernelTime();
                 handle.ResetKernelTime();
                 handle.AccumKernelTime(elapsed);
             }
